@@ -1,5 +1,6 @@
 {
   "name": "bitcoincharts",
+  "description": "bitcoincharts.com API client for node.js",
   "version": "0.0.1",
   "keywords": ["btc", "bitcoin", "bitcoincharts"],
   "author": "Preston Skupinski",
