@@ -1,0 +1,24 @@
+{
+  "name": "bitcoincharts",
+  "version": "0.0.1",
+  "keywords": ["btc", "bitcoin", "bitcoincharts"],
+  "author": "Preston Skupinski",
+  "licenses": [
+    {
+      "type": "ISC",
+      "url": "https://github.com/scud43/node-bitcoincharts/blob/master/LICENSE.txt"
+    }
+  ],
+  "dependencies": {
+    "request": "2.16.6",
+    "csv-string": "1.0.3"
+  },
+  "main": "bitcoincharts.js",
+  "engines": {
+    "node": "~0.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scud43/node-bitcoincharts"
+  }
+}
