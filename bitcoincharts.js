@@ -15,8 +15,8 @@ var BitcoinCharts = function() {
     }
 
     request(url, function(err, response, body) {
-      if(err) {
-        callback(err);
+      if(err || response.statusCode !== 200) {
+        callback(err ? err : response.statusCode);
         return;
       }
 
