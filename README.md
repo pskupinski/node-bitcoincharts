@@ -36,4 +36,4 @@ bitcoinCharts.trades({ "symbol": "mtgoxUSD", "start": 1365670800, "end": 1365670
 
 ## License
 
-This module is [ISC licensed](https://github.com/scud43/node-bitcoincharts/blob/master/LICENSE.txt).
+This module is [ISC licensed](https://github.com/pskupinski/node-bitcoincharts/blob/master/LICENSE.txt).

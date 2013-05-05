@@ -7,7 +7,7 @@
   "licenses": [
     {
       "type": "ISC",
-      "url": "https://github.com/scud43/node-bitcoincharts/blob/master/LICENSE.txt"
+      "url": "https://github.com/pskupinski/node-bitcoincharts/blob/master/LICENSE.txt"
     }
   ],
   "dependencies": {
@@ -20,6 +20,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/scud43/node-bitcoincharts"
+    "url": "https://github.com/pskupinski/node-bitcoincharts"
   }
 }
