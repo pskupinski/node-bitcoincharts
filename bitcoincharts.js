@@ -20,7 +20,14 @@ var BitcoinCharts = function() {
         return;
       }
 
-      callback(null, parserLambda(body));
+      var result;
+      try {
+        result = parserLambda(body);
+      } catch(err) {
+        return callback(new Error(err));
+      }
+
+      callback(null, result);
     });
   };
 
