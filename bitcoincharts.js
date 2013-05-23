@@ -2,46 +2,76 @@ var request = require("request"),
     querystring = require("querystring"),
     CSV = require("csv-string");
 
+/**
+ * The client for bitcoincharts.com API.
+ *
+ * @constructor
+ */
 var BitcoinCharts = function() {
-  var self = this;
-  self.url = "http://bitcoincharts.com/t/";
+  this.url = "http://bitcoincharts.com/t/";
+};
 
-  self.makeRequest = function(method, params, parserLambda, callback) {
-    var queryString = querystring.stringify(params),
-        url = self.url + method;
+/**
+ * Private helper method for making API requests.
+ *
+ * @param {string} baseUrl The base URL for the request.
+ * @param {string} method The API endpoint the request will call.
+ * @param {!Object} params The query parameters to use for the request.
+ * @param {function(string)} parserLambda The function to use for parsing the response into an easy to use format.
+ * @param {function(Error, Object)} callback The callback to call with an error or the result.
 
-    if (queryString) {
-      url += "?" + queryString;
+ */
+var makeRequest = function(baseUrl, method, params, parserLambda, callback) {
+  var queryString = querystring.stringify(params),
+      url = baseUrl + method;
+
+  if (queryString) {
+    url += "?" + queryString;
+  }
+
+  request(url, function(err, response, body) {
+    if(err || response.statusCode !== 200) {
+      return callback(new Error(err ? err : response.statusCode));
     }
 
-    request(url, function(err, response, body) {
-      if(err || response.statusCode !== 200) {
-        callback(new Error(err ? err : response.statusCode));
-        return;
-      }
+    var result;
+    try {
+      result = parserLambda(body);
+    } catch(error) {
+      return callback(new Error(error));
+    }
 
-      var result;
-      try {
-        result = parserLambda(body);
-      } catch(err) {
-        return callback(new Error(err));
-      }
+    callback(null, result);
+  });
+};
 
-      callback(null, result);
-    });
-  };
+/**
+ * Call the 'weighted_prices.json' endpoint of the API.
+ *
+ * @param {function(Error, Object)} callback The callback to call with an error or the result.
+ */
 
-  self.weightedPrices = function(callback) {
-    self.makeRequest("weighted_prices.json", {}, JSON.parse, callback);
-  };
+BitcoinCharts.prototype.weightedPrices = function(callback) {
+  makeRequest(this.url, "weighted_prices.json", {}, JSON.parse, callback);
+};
 
-  self.markets = function(callback) {
-    self.makeRequest("markets.json", {}, JSON.parse, callback);
-  };
+/**
+ * Call the 'markets.json' endpoint of the API.
+ *
+ * @param {function(Error, Object)} callback The callback to call with an error or the result.
+ */
+BitcoinCharts.prototype.markets = function(callback) {
+  makeRequest(this.url, "markets.json", {}, JSON.parse, callback);
+};
 
-  self.trades = function(params, callback) {
-    self.makeRequest("trades.csv", params, CSV.parse, callback);
-  };
-}
+/**
+ * Call the 'trades.csv' endpoint of the API.
+ *
+ * @param {!Object} params An object containing at least the 'symbol' to use and optional an 'end' time.
+ * @param {function(Error, Array)} callback The callback to call with an error or the result.
+ */
+BitcoinCharts.prototype.trades = function(params, callback) {
+  makeRequest(this.url, "trades.csv", params, CSV.parse, callback);
+};
 
 module.exports = BitcoinCharts;
