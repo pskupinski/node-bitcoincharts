@@ -3,6 +3,14 @@ node-bitcoincharts
 
 An unofficial node.js client for the [bitcoin charts markets api](http://bitcoincharts.com/about/markets-api/).
 
+## Installation
+
+node-bitcoincharts is available as `bitcoincharts` on npm.
+
+```
+npm install bitcoincharts
+```
+
 ## Usage
 
 ```javascript
