@@ -34,6 +34,10 @@ var makeRequest = function(baseUrl, method, params, parserLambda, callback) {
       return callback(new Error(err ? err : response.statusCode));
     }
 
+    if(!body) {
+      return callback(new Error('Bitcoincharts responded without any data'));
+    }
+
     var result;
     try {
       result = parserLambda(body);
