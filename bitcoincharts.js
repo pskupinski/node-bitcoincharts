@@ -8,7 +8,7 @@ var request = require("request"),
  * @constructor
  */
 var BitcoinCharts = function() {
-  this.url = "http://bitcoincharts.com/t/";
+  this.url = "http://api.bitcoincharts.com/v1/";
 };
 
 /**
