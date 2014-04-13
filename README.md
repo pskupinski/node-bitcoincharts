@@ -33,7 +33,7 @@ bitcoinCharts.markets(function(err, data) {
   console.log(data);
 });
 
-bitcoinCharts.trades({ "symbol": "mtgoxUSD", "start": 1365670800, "end": 1365670860 }, function(err, data) {
+bitcoinCharts.trades({ "symbol": "btceUSD", "start": 1397322000, "end": 1397324000 }, function(err, data) {
   if (err) {
     throw err;
   }
