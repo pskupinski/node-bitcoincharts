@@ -11,8 +11,8 @@
     }
   ],
   "dependencies": {
-    "request": "2.16.6",
-    "csv-string": "1.0.3"
+    "request": "2.34.0",
+    "csv-string": "2.1.1"
   },
   "main": "bitcoincharts.js",
   "engines": {
